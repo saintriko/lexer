@@ -1,0 +1,8 @@
+	char ch = 'a';
+
+	string s = "testStr\ing@3326";
+
+	read();
+	write(s);
+	return 42;
+}
