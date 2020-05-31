@@ -7,8 +7,6 @@ CLexer::CLexer(std::istream& input, std::ofstream& output)
 	, m_output(output)
 {
 }
-// TODO GOOD длина инт max проверка 
-// TODO GOOD конец файла, разделители между словами без пробела
 bool CLexer::FindStringInVector(std::vector<std::string> vector, std::string string)
 {
 	return std::find(vector.begin(), vector.end(), string) != vector.end();
@@ -355,6 +353,37 @@ void CLexer::Run()
 						token.value = "";
 						continue;
 					}
+				}
+				else {
+					if (line[i] == '=' && line[i + 1] != '=') {
+						AddToken(token);
+						token.position = i + 1;
+						token.value = line[i];
+						AddToken(token);
+						token.value = "";
+						continue;
+					}
+					if (line[i] == '=' && line[i + 1] != '=') {
+
+						token.position = i + 1;
+						token.value += line[i];
+						AddToken(token);
+						token.value = "";
+						continue;
+					}
+				}
+			}
+
+			if (!multiStringComment && !string) 
+			{
+				if (line[i] == '}' || line[i] == '{' || line[i] == '[' || line[i] == ']' || line[i] == ',' || line[i] == ';')
+				{
+					AddToken(token);
+					token.position = i + 1;
+					token.value = line[i];
+					AddToken(token);
+					token.value = "";
+					continue;
 				}
 			}
 
