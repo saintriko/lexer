@@ -3,10 +3,10 @@
 #include <vector>
 #include <fstream>
 
-class Lexer
+class CLexer
 {
 public:
-	Lexer(std::istream& input, std::ofstream& output);
+	CLexer(std::istream& input, std::ofstream& output);
 
 	void Run();
 
@@ -18,7 +18,7 @@ private:
 	std::string GetTokenName(Token token);
 	void AddToken(Token token);
 
-	bool IsKeyword(std::string str);
+	bool IsOperator(std::string str);
 	bool IsArray(std::string str);
 	bool IsArithmeticalOperator(std::string str);
 	bool IsComparisonOperator(std::string str);
@@ -39,7 +39,7 @@ private:
 	const std::vector<std::string> m_comparisonOperators = { "==", "!=", ">", "<", ">=", "<=" };
 	const std::vector<std::string> m_logicOperators = { "&&", "||", "!" };
 	const std::vector<std::string> m_brackets = { "{", "}", "(", ")" };
-	const std::vector<std::string> m_separators = { ",", ";" };
+	const std::vector<std::string> m_separators = { ",", ";", ":" };
 	const std::vector<std::string> m_binary = { "0", "1" };
 	const std::vector<std::string> m_octal = { "0", "1", "2", "3", "4", "5", "6", "7" };
 	const std::vector<std::string> m_decimal = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -48,6 +48,8 @@ private:
 	const std::vector<std::string> m_letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
 		"S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
 		"q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+
+
 
 	std::istream& m_input;
 	std::ofstream& m_output;

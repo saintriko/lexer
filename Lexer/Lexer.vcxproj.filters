@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="CLexer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Lexer.cpp">
@@ -26,7 +26,7 @@
     <ClInclude Include="Token.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexer.h">
+    <ClInclude Include="CLexer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

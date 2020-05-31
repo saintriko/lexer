@@ -139,11 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CLexer.cpp" />
     <ClCompile Include="Lexer.cpp" />
-    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lexer.h" />
+    <ClInclude Include="CLexer.h" />
     <ClInclude Include="Token.h" />
   </ItemGroup>
   <ItemGroup>
