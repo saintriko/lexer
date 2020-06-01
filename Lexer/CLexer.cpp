@@ -117,7 +117,7 @@ TokenType CLexer::GetTokenType(Token token)
 	{
 		std::string base = token.value.substr(0, 2);
 		std::string digits;
-		
+
 		if (base == "0b")
 		{
 			digits = token.value.substr(2, -1);
@@ -131,7 +131,7 @@ TokenType CLexer::GetTokenType(Token token)
 			if (isDigits)
 				return TokenType::BINARY;
 		}
-		else if(base == "0o")
+		else if (base == "0o")
 		{
 			digits = token.value.substr(2, -1);
 			bool isDigits = true;
@@ -337,7 +337,7 @@ void CLexer::Run()
 				continue;
 			}
 
-			if (!multiStringComment && !string) { 
+			if (!multiStringComment && !string) {
 				if (i > 0) {
 					if (line[i] == '=' && line[i + 1] != '=' && line[i - 1] != '=') {
 						AddToken(token);
@@ -376,9 +376,9 @@ void CLexer::Run()
 				}
 			}
 
-			if (!multiStringComment && !string) 
+			if (!multiStringComment && !string)
 			{
-				if (line[i] == '}' || line[i] == '{' || line[i] == '[' || line[i] == ']' || line[i] == ',' || line[i] == ';' || line[i] == '+')
+				if (line[i] == '}' || line[i] == '{' || line[i] == '[' || line[i] == ']' || line[i] == ',' || line[i] == ';')
 				{
 					AddToken(token);
 					token.position = i + 1;
@@ -391,6 +391,18 @@ void CLexer::Run()
 
 			ch = line[i];
 
+			if (!multiStringComment && !string && (line[i] == '-' || line[i] == '+')) {
+				if (line[i - 1] != 'E')
+				{
+					AddToken(token);
+					token.position = i + 1;
+					token.value = line[i];
+					AddToken(token);
+					token.value = "";
+					continue;
+				}
+			}
+
 			if ((ch == "-" || ch == "+") && token.value.length() > 0 && identifier == true && !string && !multiStringComment && token.value != "E")
 			{
 				if (token.value[token.value.length() - 1] == 'E')
@@ -402,7 +414,7 @@ void CLexer::Run()
 				}
 			}
 
-			if (IsLetter(ch) || IsDecimal(ch) || ch == "." || ch == "_" )
+			if (IsLetter(ch) || IsDecimal(ch) || ch == "." || ch == "_")
 			{
 				if (identifier)
 				{
@@ -430,8 +442,8 @@ void CLexer::Run()
 				}
 				else
 				{
-					if (line[i] != ' ') 
-						token.value += line[i]; 
+					if (line[i] != ' ')
+						token.value += line[i];
 					else
 					{
 						AddToken(token);
