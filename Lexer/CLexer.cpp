@@ -89,8 +89,10 @@ TokenType CLexer::GetTokenType(Token token)
 	if (token.value[0] == '"' && token.value[token.value.length() - 1] == '"')
 		return TokenType::STRING;
 	if (token.value[0] == '\'' && token.value[token.value.length() - 1] == '\'')
+	{
 		if (token.value.length() == 3)
 			return TokenType::CHAR;
+	}
 	if (IsArithmeticalOperator(token.value))
 		return TokenType::ARITHMETIC_OPERATOR;
 	if (IsComparisonOperator(token.value))
@@ -376,7 +378,7 @@ void CLexer::Run()
 
 			if (!multiStringComment && !string) 
 			{
-				if (line[i] == '}' || line[i] == '{' || line[i] == '[' || line[i] == ']' || line[i] == ',' || line[i] == ';')
+				if (line[i] == '}' || line[i] == '{' || line[i] == '[' || line[i] == ']' || line[i] == ',' || line[i] == ';' || line[i] == '+')
 				{
 					AddToken(token);
 					token.position = i + 1;
@@ -429,7 +431,7 @@ void CLexer::Run()
 				else
 				{
 					if (line[i] != ' ') 
-						token.value += line[i]; //TODO проверка = [ ] { } и других символов
+						token.value += line[i]; 
 					else
 					{
 						AddToken(token);
