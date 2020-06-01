@@ -14,7 +14,7 @@ bool CLexer::FindStringInVector(std::vector<std::string> vector, std::string str
 
 bool CLexer::IsOperator(std::string string)
 {
-	return FindStringInVector(m_keywords, string);
+	return FindStringInVector(m_operators, string);
 }
 
 bool CLexer::IsArray(std::string string)

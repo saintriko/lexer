@@ -32,7 +32,7 @@ private:
 	bool IsLetter(std::string str);
 	bool IsComment(std::string str);
 
-	const std::vector<std::string> m_keywords = { "if", "else", "while", "for", "read", "write", "return", "int", "float",
+	const std::vector<std::string> m_operators = { "if", "else", "while", "for", "read", "write", "return", "int", "float",
 		"void", "main", "string", "char" };
 	const std::vector<std::string> m_array = { "[", "]", "[]" };
 	const std::vector<std::string> m_arithmeticalOperators = { "+", "-", "*", "/", "=" };
